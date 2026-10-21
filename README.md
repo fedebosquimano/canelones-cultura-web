@@ -1,13 +1,19 @@
-# Canelones Cultura Web — prototipo
+# Canelones Cultura Web
 
-Prototipo navegable de la web de la Dirección de Cultura del Gobierno de Canelones.
+Portada de la Dirección de Cultura del Gobierno de Canelones. Sitio estático: solo HTML, CSS y JavaScript, sin compilación ni dependencias, pensado para subirse tal cual al servidor de la Intendencia (subdominio canelonescultura).
 
-- Concepto: «La cultura se vive en…»: el nombre de la localidad ocupa la pantalla y el mapa del departamento se enciende con la agenda.
-- `index.html`: la página (HTML, CSS y JavaScript en un solo archivo, sin dependencias de compilación).
-- `data/agenda.json`: actividades tomadas de la planilla AGENDA CANELONES CULTURA.
-- `data/cronicas.json`: crónicas tomadas de @canelonescultura.
-- `img/`: logos del Gobierno de Canelones (a color y monocromo). El isologo de Canelones Cultura va como SVG dentro de `index.html`.
+## Estructura
 
-Para ver la página online, activar GitHub Pages en Settings → Pages → rama `main`, carpeta raíz.
+- `index.html`: la página.
+- `css/estilos.css`: estilos.
+- `js/datos.js`: **todo el contenido** (agenda, crónicas, red de centros, convocatoria, cifras, contacto, formulario). Es el único archivo que hay que tocar para actualizar la web.
+- `js/app.js`: la lógica (menú, «Lo que viene», filtros, mapa de localidades, cifras).
+- `img/`: logos del Gobierno de Canelones, isotipo y fotos (`img/fotos/`, cada una en 480 y 960 px, WebP y JPEG). Los créditos y derechos de cada foto están en `img/fotos/CREDITOS.md`.
 
-Las actividades ya pasadas se ocultan solas. Para actualizar la agenda, reemplazar los archivos de `data/` con el mismo formato.
+## Ver la página
+
+Abrir `index.html` en el navegador. Para verla online: Settings → Pages → rama `main`, carpeta raíz.
+
+## Pendientes
+
+Faltan datos que no se inventan y quedan vacíos hasta confirmarlos (enlaces a Instagram de algunas actividades, algunos teléfonos y direcciones, nombres de fotógrafos). Las fuentes de cada cifra figuran en el propio sitio.
