@@ -226,7 +226,7 @@ window.CULTURA = {
     ],
     pregunta: '¿Tenés banda?',
     boton: 'Bases e inscripción',
-    link: 'https://www.imcanelones.gub.uy'
+    link: 'https://www.imcanelones.gub.uy/noticias/convocatoria-abierta-artistas-canarios-que-quieran-participar-del-canelones-suena-bien'
   },
 
   memoria: [
