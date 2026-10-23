@@ -273,17 +273,43 @@
     window.addEventListener('resize', function () { medir(); pedir(); });
     window.addEventListener('load', function () { medir(); pedir(); });
   }
-  var cr = (D.cronicas || []).slice(0, 4);
-  if (cr.length) {
-    $('cronicas').innerHTML = cr.map(function (c, i) {
+  /* Así se vivió: las crónicas cargadas a mano más las actividades de la agenda que ya pasaron.
+     Cada día, lo que ocurrió baja de «Lo que viene», del mapa y de la agenda y se suma acá (solo con datos reales de la planilla). */
+  var VIVIO_DIAS = 45, vivioShown = 4;
+  var cr = (D.cronicas || []).map(function (c) {
+    return { fecha: c.fecha, tipo: c.tipo, titulo: c.titulo, texto: c.texto, foto: c.foto, url: c.url, localidad: c.localidad || '' };
+  });
+  var pasadas = (D.agenda || []).filter(function (e) {
+    var fin = pd(e.fechaFin || e.fecha);
+    return e.fecha && e.titulo && e.lugar && e.localidad && e.tipo && e.estado !== 'baja' && e.estado !== 'suspendida' &&
+      fin < T && fin >= addDays(T, -VIVIO_DIAS) &&
+      !cr.some(function (c) { return c.fecha === (e.fechaFin || e.fecha) && c.localidad === e.localidad; });
+  }).map(function (e) {
+    return { fecha: e.fechaFin || e.fecha, tipo: e.tipo, titulo: e.titulo, texto: '', foto: null, url: e.instagram || '', localidad: e.localidad, lugar: e.lugar };
+  });
+  var vivio = cr.concat(pasadas).filter(function (c) { return pd(c.fecha) < addDays(T, 1); })
+    .sort(function (a, b) { return a.fecha < b.fecha ? 1 : a.fecha > b.fecha ? -1 : 0; });
+  var vivioEl = $('cronicas'), vivioMore = $('vivioMore');
+  function renderVivio() {
+    if (!vivio.length) return;
+    vivioEl.innerHTML = vivio.slice(0, vivioShown).map(function (c, i) {
       var f = pd(c.fecha);
       return card({
         tipo: c.tipo, titulo: c.titulo, texto: c.texto, foto: c.foto, href: c.url,
-        meta: (c.localidad ? c.localidad + ' · ' : '') + DIA[f.getDay()] + ' ' + f.getDate() + ' ' + MES[f.getMonth()],
+        meta: (c.lugar ? c.lugar + ' · ' : c.localidad ? c.localidad + ' · ' : '') + DIA[f.getDay()] + ' ' + f.getDate() + ' ' + MES[f.getMonth()],
         acts: url(c.url) ? '<a class="btn-s" href="' + esc(c.url) + '" target="_blank" rel="noopener">Ver en Instagram</a>' : ''
       }, i);
     }).join('');
+    if (vivioMore) vivioMore.hidden = vivio.length <= vivioShown;
+    arm();
   }
+  if (vivioMore) vivioMore.addEventListener('click', function () { vivioShown += 4; renderVivio(); });
+  renderVivio();
+
+  /* Si la página queda abierta y cambia el día, se recarga para actualizar todas las secciones. */
+  function cambioDia() { if (iso(hoy()) !== iso(T)) location.reload(); }
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) cambioDia(); });
+  setInterval(cambioDia, 300000);
 
   var gt = $('gente');
   if (gt && (D.gente || []).length) {
