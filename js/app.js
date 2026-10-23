@@ -299,8 +299,10 @@
   var gt = $('gente');
   if (gt && (D.gente || []).length) {
     gt.innerHTML = D.gente.map(function (g, i) {
+      var lnk = url(g.enlace);
       return '<li class="rv ' + esc(g.tipo) + '" style="--i:' + i + '"><div class="gf">' + picture(g) + '</div>' +
-        '<span class="tagpill">' + esc(g.etiqueta) + '</span>' + (g.credito ? '<span class="cred">Foto: ' + esc(g.credito) + '</span>' : '') + '</li>';
+        (lnk ? '<a class="btn-s" href="' + esc(lnk) + '" target="_blank" rel="noopener">' + esc(g.etiqueta) + '</a>'
+             : '<span class="tagpill">' + esc(g.etiqueta) + '</span>') + '</li>';
     }).join('');
   } else if (gt) gt.hidden = true;
 

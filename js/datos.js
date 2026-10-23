@@ -123,12 +123,13 @@ window.CULTURA = {
     {"fecha": "2026-10-07", "titulo": "Hugo Fattoruso y la Jam de la Costa", "texto": "Hugo Fattoruso llegó al Centro Cultural Ciudad de la Costa y el piano dejó de ser un mueble.", "localidad": "Ciudad de la Costa", "tipo": "centro", "url": "https://www.instagram.com/p/DeNfAV7jSU8/", "foto": {"src": "img/fotos/fattoruso-jam", "alt": "Hugo Fattoruso con auriculares, tocando los teclados junto a la Jam de la Costa", "credito": "Comunicación Cultural"}},
   ],
 
-  /* Fotos de la sección «Avanzamos con la gente». tipo define el color del duotono. */
+  /* Fotos de la sección «Avanzamos con la gente». tipo define el color del duotono.
+     etiqueta: texto del botón. enlace: página a la que lleva el botón, que habla de lo que muestra la foto. */
   gente: [
-    {"src": "img/fotos/csb-escenario", "tipo": "escena", "etiqueta": "Canelones Suena Bien", "alt": "Vista aérea del escenario y el público de Canelones Suena Bien, de noche", "credito": "Comunicación Cultural"},
-    {"src": "img/fotos/fiesta-chacra", "tipo": "centro", "etiqueta": "Fiesta de la Chacra", "alt": "Mujeres con pañuelo blanco aplauden en la Fiesta de la Chacra", "credito": "Comunicación Cultural"},
-    {"src": "img/fotos/carnaval-candombe", "tipo": "fiesta", "etiqueta": "Candombe en el Carnaval", "alt": "Una bailarina de azul con los brazos abiertos, y detrás un gramillero y tamborileros, en un desfile de candombe", "credito": "Comunicación Cultural"},
-    {"src": "img/fotos/carnaval-comparsa", "tipo": "conv", "etiqueta": "Carnaval de Canelones", "alt": "Integrante de una comparsa con sombrero y traje dorado bajo las luces del escenario", "credito": "Comunicación Cultural"},
+    {"src": "img/fotos/csb-escenario", "tipo": "escena", "etiqueta": "Canelones Suena Bien", "alt": "Vista aérea del escenario y el público de Canelones Suena Bien, de noche", "enlace": "https://www.imcanelones.gub.uy/noticias/convocatoria-abierta-artistas-canarios-que-quieran-participar-del-canelones-suena-bien"},
+    {"src": "img/fotos/fiesta-chacra", "tipo": "centro", "etiqueta": "Fiesta de la Chacra", "alt": "Mujeres con pañuelo blanco aplauden en la Fiesta de la Chacra", "enlace": "https://www.instagram.com/p/Ddmq5e2xZgl/"},
+    {"src": "img/fotos/talleres-formacion", "tipo": "fiesta", "etiqueta": "Talleres de formación cultural", "alt": "Una joven inclinada sobre una mesa arma un mosaico de piezas de colores en un taller de formación cultural, con otras personas trabajando detrás", "enlace": "https://www.imcanelones.gub.uy/node/26321"},
+    {"src": "img/fotos/carnaval-comparsa", "tipo": "conv", "etiqueta": "Carnaval de Canelones", "alt": "Integrante de una comparsa con sombrero y traje dorado bajo las luces del escenario", "enlace": "https://www.instagram.com/p/DVxBG_ejblA/"},
   ],
 
   /* Red de centros culturales, espacios culturales y bibliotecas públicas.
@@ -273,7 +274,7 @@ window.CULTURA = {
   /* Formulario de pedidos a Comunicación Cultural. Sin endpoint, el formulario arma el
      correo (mailto) y muestra el texto para copiar. Con endpoint, envía los datos por POST (JSON). */
   formulario: {
-    correo: 'mesa.cultura@imcanelones.gub.uy',
+    correo: 'cultura.comunicaciones@imcanelones.gub.uy',
     endpoint: '',
     oficial: ''
   },

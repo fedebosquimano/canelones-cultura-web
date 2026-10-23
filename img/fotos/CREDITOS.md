@@ -8,7 +8,8 @@
 | prende-certificados-480/960 | Entrega de certificados de Canelones PRENDE, sede de Canelones Cultura | Foto de 26 de febrero de 2024 (nombre de archivo 20240226_144322), subida por Fede; es de una entrega anterior, no de la convocatoria 2026 | Fotos de la Dirección de Cultura. Falta nombre del fotógrafo. |
 | csb-escenario-480/960 | Canelones Suena Bien, vista aérea del escenario y el público | Carpeta de Drive «fotos-web-cultura» (destacada_csb_general_0.png), 800 px de ancho | Falta fecha de edición, procedencia exacta y fotógrafo. |
 | fiesta-chacra-480/960 | Fiesta de la Chacra | Carpeta de Drive «fotos-web-cultura» (destacada_chacra_2.jpg), 800 px de ancho | Falta fecha de edición, procedencia exacta y fotógrafo. |
-| carnaval-candombe-480/960 | Candombe en el Carnaval de Canelones, desfile con tamborileros | Carpeta de Drive «fotos-web-cultura» (photo_2026-01-09_14-35-01.jpg) (nombre de archivo del 9 de enero de 2026) | Falta nombre del fotógrafo y de la comparsa. |
+| carnaval-candombe-480/960 | Candombe en el Carnaval de Canelones, desfile con tamborileros | Carpeta de Drive «fotos-web-cultura» (photo_2026-01-09_14-35-01.jpg) (nombre de archivo del 9 de enero de 2026) | Falta nombre del fotógrafo y de la comparsa. Sin uso en la web desde el 23 de octubre de 2026. |
+| talleres-formacion-480/960 | Taller de formación cultural: una joven arma un mosaico de piezas de colores | Foto enviada por Fede para la web el 23 de octubre de 2026 (archivo 1792778936655_image.png, 610 px de ancho, por eso la versión de 960 es del tamaño original) | Falta fecha, taller, nombre del fotógrafo y autorización de las personas que aparecen. |
 | carnaval-comparsa-480/960 | Carnaval de Canelones, comparsa | Carpeta de Drive «fotos-web-cultura» (E070.jpg) | Falta nombre del fotógrafo y la agrupación. |
 
 Para sumar una foto: reducirla a 480 y 960 px de ancho, guardarla en WebP y JPEG, y registrarla en `js/datos.js` (campo `foto`).
