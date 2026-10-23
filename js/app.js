@@ -246,7 +246,15 @@
       HH = Math.round(document.querySelector('.top').getBoundingClientRect().height);
       document.documentElement.style.setProperty('--hh', HH + 'px');
       STEP = Math.round(window.innerHeight * 0.6);
-      pns.forEach(function (p) { p.style.setProperty('--nw', p.querySelector('.pn-n').offsetWidth + 'px'); });
+      var movil = window.innerWidth <= 899;
+      pns.forEach(function (p) {
+        /* En pantallas chicas el número va arriba y el texto abajo: el número se achica para no montarse con el texto. */
+        if (movil) {
+          var bd = p.querySelector('.pn-body'), libre = sweepEl.offsetHeight - parseFloat(getComputedStyle(bd).bottom) - bd.offsetHeight - 56 - 14;
+          p.style.setProperty('--dh', Math.max(libre, 90) + 'px');
+        } else p.style.removeProperty('--dh');
+        p.style.setProperty('--nw', p.querySelector('.pn-n').offsetWidth + 'px');
+      });
       track.style.height = (sweepEl.offsetHeight + (N - 1) * STEP) + 'px';
     };
     var pintar = function () {
