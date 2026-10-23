@@ -24,7 +24,10 @@
     });
   }
   function pd(iso) { var p = String(iso || '').split('-'); return new Date(+p[0], (+p[1] || 1) - 1, +p[2] || 1); }
-  function hoy() { var d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  /* DEMO: la fecha queda fija en el 21 de octubre de 2026 para mostrar la web sin cambios.
+     Para que vuelva a seguir el calendario real, poner FECHA_FIJA = null. */
+  var FECHA_FIJA = '2026-10-21';
+  function hoy() { if (FECHA_FIJA) return pd(FECHA_FIJA); var d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
   function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
   function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
   function norm(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
