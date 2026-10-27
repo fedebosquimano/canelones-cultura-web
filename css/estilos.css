@@ -461,3 +461,11 @@ footer .wrap { padding-block: 44px 34px; }
 .row .rf.memoria img { filter: grayscale(1) contrast(1.05); mix-blend-mode: normal; }
 .row .rf.vacio span { position: absolute; left: 8px; right: 8px; bottom: 8px; font-family: var(--display); font-stretch: 62%; font-size: 26px; line-height: .8; letter-spacing: -.04em; color: var(--iron); }
 .row .rf.centro.vacio span, .row .rf.memoria.vacio span { color: var(--white); }
+
+/* Créditos de las fotos (pie) */
+.creditos { margin: 28px 0 0; font-size: 13px; line-height: 1.45; }
+.creditos summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; width: fit-content; text-decoration: underline; text-underline-offset: 3px; }
+.creditos p { margin: 6px 0 10px; max-width: 70ch; }
+.creditos ul { list-style: none; margin: 0; padding: 0; columns: 2 320px; column-gap: 32px; }
+.creditos li { break-inside: avoid; padding: 3px 0; }
+.creditos a { text-decoration: underline; text-underline-offset: 3px; }

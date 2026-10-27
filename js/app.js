@@ -303,6 +303,14 @@
     }).join('');
   }
 
+  var cf = D.creditosFotos || [], cd = $('creditosFotos');
+  if (cd && cf.length) {
+    $('creditosList').innerHTML = cf.map(function (c) {
+      return '<li>' + esc(c.actividad) + ': <a href="' + esc(c.url) + '" target="_blank" rel="noopener">foto de ' + esc(c.autor) + '</a>, ' + esc(c.licencia) + '.</li>';
+    }).join('');
+    cd.hidden = false;
+  }
+
   var gt = $('gente');
   if (gt && (D.gente || []).length) {
     gt.innerHTML = D.gente.map(function (g, i) {
