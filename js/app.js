@@ -26,7 +26,7 @@
   function pd(iso) { var p = String(iso || '').split('-'); return new Date(+p[0], (+p[1] || 1) - 1, +p[2] || 1); }
   /* DEMO: la fecha queda fija en el 21 de octubre de 2026 para mostrar la web sin cambios.
      Para que vuelva a seguir el calendario real, poner FECHA_FIJA = null. */
-  var FECHA_FIJA = '2026-10-21';
+  var FECHA_FIJA = null;
   function hoy() { if (FECHA_FIJA) return pd(FECHA_FIJA); var d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
   function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
   function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
@@ -202,10 +202,17 @@
   }).join('');
 
   /* ---------- Tarjetas ---------- */
-  function picture(f) {
+  function picture(f, sizes) {
     if (!f || !f.src) return '';
-    return '<picture><source type="image/webp" srcset="' + esc(f.src) + '-480.webp 480w, ' + esc(f.src) + '-960.webp 960w" sizes="(min-width:1000px) 25vw, 50vw">' +
-      '<img src="' + esc(f.src) + '-960.jpg" srcset="' + esc(f.src) + '-480.jpg 480w, ' + esc(f.src) + '-960.jpg 960w" sizes="(min-width:1000px) 25vw, 50vw" alt="' + esc(f.alt || '') + '" loading="lazy" decoding="async"></picture>';
+    sizes = sizes || '(min-width:1000px) 25vw, 50vw';
+    return '<picture><source type="image/webp" srcset="' + esc(f.src) + '-480.webp 480w, ' + esc(f.src) + '-960.webp 960w" sizes="' + sizes + '">' +
+      '<img src="' + esc(f.src) + '-960.jpg" srcset="' + esc(f.src) + '-480.jpg 480w, ' + esc(f.src) + '-960.jpg 960w" sizes="' + sizes + '" alt="' + esc(f.alt || '') + '" loading="lazy" decoding="async"></picture>';
+  }
+  /* Foto de una actividad: la propia (foto: 'img/fotos/nombre') o, si no tiene, una genérica por etiqueta o por programa
+     (fotosGenericas en datos.js). Es decorativa: el nombre de la actividad está al lado. */
+  function fotoDe(e) {
+    var G = D.fotosGenericas || {}, f = e.foto || G[norm(e.etiqueta)] || G['tipo:' + e.tipo];
+    return f ? { src: typeof f === 'string' ? f : f.src, alt: '' } : null;
   }
   function card(o, i) {
     var dark = (o.tipo === 'centro' || o.tipo === 'memoria') ? ' on-dark' : '';
@@ -343,8 +350,10 @@
         var d = fechaGrande(e);
         var extra = [e.entrada, e.publico].filter(Boolean).join(' · ');
         var ig = url(e.instagram);
+        var fo = fotoDe(e);
         return '<li class="row">' +
           '<div class="date' + (first ? ' rv' : '') + '">' + esc(d.big) + '<small>' + esc(d.small) + '</small></div>' +
+          '<div class="rf ' + esc(e.tipo) + (fo ? '' : ' vacio') + '" aria-hidden="true">' + (fo ? picture(fo, '(min-width:1000px) 132px, 220px') : '<span>' + esc(e.etiqueta || TIPOS[e.tipo]) + '</span>') + '</div>' +
           '<div class="t"><h3>' + (ig ? '<a href="' + esc(ig) + '" target="_blank" rel="noopener">' + esc(e.titulo) + '</a>' : esc(e.titulo)) + '</h3><p>' + esc(e.lugar) + (extra ? '<br>' + esc(extra) : '') +
             (e.estado === 'cambio' ? '<br><b>Cambio reciente: revisá fecha y hora.</b>' : '') + '</p>' +
             '<div class="acts"><a class="btn-s" href="' + esc(mapsUrl(e.lugar, e.localidad)) + '" target="_blank" rel="noopener">Cómo llegar</a>' +
